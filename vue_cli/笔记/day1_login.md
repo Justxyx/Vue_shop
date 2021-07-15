@@ -39,7 +39,7 @@ username 初始为空，与输入框双向绑定。 也就是说，无论输入�
 3. 在el-form-item中，指定校验 `prop="name"`
 
 ## 表单重置
-1. 表单绑定ref引用
+1. 表单绑定ref引用 ref为表单的示例对象
    `ref="loginFromRef"`
 2. 为重置表单绑定单机事件，绑定 `resetLoginForm` 函数
 3. 获取表单的实例对象，调用 resetField 函数重置表单

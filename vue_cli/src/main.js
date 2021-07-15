@@ -25,6 +25,17 @@ Vue.prototype.$http = axios
 // Vue.use(Message)
 Vue.prototype.$message = Message
 
+// 引用MessageBox 全局挂载，提示框
+import { MessageBox } from 'element-ui';
+Vue.prototype.$confirm = MessageBox.confirm
+
+// 配置拦截器，为所有的请求添加Authorization头信息
+axios.interceptors.request.use(config =>{
+  // console.log(config)
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  return config
+})
+
 
 
 
