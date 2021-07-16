@@ -212,24 +212,24 @@ export default {
       if (res.meta.status !== 200) return this.$message.erro('请求失败')
       this.userlist = res.data.users
       this.total = res.data.total
-      console.log(res)
+      // console.log(res)
     },
     // 监听每页显示多少条数据
     handleSizeChange(newSize) {
-      console.log(newSize)
+      // console.log(newSize)
       this.queryInfo.pagesize = newSize
       this.getUserList()
     },
     // 监听当前的页码数
     handleCurrentChange(currentPage) {
-      console.log(currentPage)
+      // console.log(currentPage)
       this.queryInfo.pagenum = currentPage
       this.getUserList()
     },
     // 用户状态的变化监听
     async userChange(change) {
       const { data: res } = await this.$http.put(`users/${change.id}/state/${change.mg_state}`)
-      console.log(res)
+      // console.log(res)
       if (res.meta.status != 200) {
         change.mg_state = !change.mg_state
         return this.$message.error('更新用户状态失败')
@@ -243,10 +243,10 @@ export default {
     // 新增用户
     addUser() {
       this.$refs.addUsersFormRef.validate(async (valid) => {
-        console.log(valid)
+        // console.log(valid)
         if (!valid) return // 判定不合法
         const { data: res } = await this.$http.post('users', this.addUsersForm)
-        console.log(res)
+        // console.log(res)
         if (res.meta.status != 201) this.$message.error('插入失败')
         this.$message.success('插入成功')
         this.dialogVisible = false
@@ -295,7 +295,7 @@ export default {
       if(confirm == 'cancel') return this.$message.info("您已取消删除")
 
       const {data:res} =await this.$http.delete('users/'+id)
-      console.log(res)
+      // console.log(res)
       if (res.meta.status != 200) return this.$message.erro("删除失败")
       this.$message.success("删除成功")
       this.getUserList()
