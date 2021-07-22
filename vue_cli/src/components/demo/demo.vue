@@ -21,8 +21,7 @@
       >
       <!--拍照-->
       <Button type="primary" @click="photograph"
-        ><a-icon type="camera"
-      /></Button>
+        >拍照</Button>
     </div>
     <!--图片展示-->
     <video
@@ -73,21 +72,23 @@ export default {
     photograph() {
       // 把当前视频帧内容渲染到canvas上
       let ctx = this.$refs["canvas"].getContext("2d");
-      ctx.drawImage(this.$refs["video"], 0, 0, 640, 480);
+      ctx.drawImage(this.$refs["video"], 0, 0, 320, 246);
+      console.log(ctx)
       /**------------后面是下载功能----------*/
       // 转base64格式、图片格式转换、图片质量压缩---支持两种格式image/jpeg+image/png
-      //let imgBase64 = this.$refs["canvas"].toDataURL("image/jpeg", 0.7);
+      let imgBase64 = this.$refs["canvas"].toDataURL("image/jpeg", 0.7);
+      console.log(imgBase64)
       // 由字节转换为KB 判断大小
-      // let str = imgBase64.replace("data:image/jpeg;base64,", "");
-      // let strLength = str.length;
-      // let fileLength = parseInt(strLength - (strLength / 8) * 2); // 图片尺寸  用于判断
-      // let size = (fileLength / 1024).toFixed(2);
+      let str = imgBase64.replace("data:image/jpeg;base64,", "");
+      let strLength = str.length;
+      let fileLength = parseInt(strLength - (strLength / 8) * 2); // 图片尺寸  用于判断
+      let size = (fileLength / 1024).toFixed(2);
       // console.log(size); // 上传拍照信息  调用接口上传图片 .........
       // 保存到本地
-      // let ADOM = document.createElement("a");
-      // ADOM.href = this.headImgSrc;
-      // ADOM.download = new Date().getTime() + ".jpeg";
-      // ADOM.click();
+      let ADOM = document.createElement("a");
+      ADOM.href = this.headImgSrc;
+      ADOM.download = new Date().getTime() + ".jpeg";
+      ADOM.click();
     },
     // 关闭摄像头
     closeCamera() {
